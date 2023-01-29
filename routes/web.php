@@ -12,7 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 
-Route::get('/', function () {
-    return view('dashboard');
+    ], function(){
+        Route::get('/', function () {
+            return view('dashboard');
+    });
+
 });
